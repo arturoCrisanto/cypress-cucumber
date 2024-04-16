@@ -7,7 +7,7 @@ install cypress
 npm install cypress --save-dev
 ```
 
-install also this for cucumber
+also install this for cucumber
 
 ```bash
 npm i @badeball/cypress-cucumber-preprocessor
@@ -44,7 +44,7 @@ module.exports = defineConfig({
 });
 ```
 
-if you want to add the cypress studio
+if you want to add the Cypress studio
 
 ```javascript
 experimentalStudio: true,
@@ -52,7 +52,7 @@ experimentalStudio: true,
 
 just add this to your cypres.config file inside the e2e
 
-also change the package.jason file
+also, change the package.json file
 
 ```javascript
 {
@@ -69,7 +69,7 @@ also change the package.jason file
 
 it should be like this
 
-## and your done with the instalation
+## and you're done with the installation
 
 for further documentation regard to this [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
 
