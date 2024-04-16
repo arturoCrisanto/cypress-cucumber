@@ -63,6 +63,6 @@ it should be like this
 
 ## and your done with the instalation
 
-## for further documentation regard to this [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
+for further documentation regard to this [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
 
-## as for the Steps regard to this website [steps](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
+as for the Steps regard to this website [steps](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
