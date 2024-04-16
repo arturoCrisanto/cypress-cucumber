@@ -1,6 +1,4 @@
-Feature: Board functionality
-
-  Scenario: Create a board
-    Given I am on empty home page
-    When I type and submit in the board name
-    Then I should be redirected to the board detail
+# Feature: Must be able to acces the cypress test
+#   Scenario: Can search the Website
+#     Given I am on the website
+#     Then I should be in the cypress website

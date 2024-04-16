@@ -44,6 +44,14 @@ module.exports = defineConfig({
 });
 ```
 
+if you want to add the cypress studio
+
+```javascript
+experimentalStudio: true,
+```
+
+just add this to your cypres.config file inside the e2e
+
 also change the package.jason file
 
 ```javascript
