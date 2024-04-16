@@ -1,5 +1,5 @@
 #Cypress with Cucumber (BDD)
-how to install cypress with cucumber 
+how to install cypress with cucumber
 
 install cypress
 
@@ -12,10 +12,12 @@ install also this for cucumber
 ```bash
 npm i @badeball/cypress-cucumber-preprocessor
 ```
+
 ```bash
 npm i @bahmutov/cypress-esbuild-preprocessor
 ```
-and change the cypress.config file 
+
+and change the cypress.config file
 
 ```javascript
 const { defineConfig } = require("cypress");
@@ -42,7 +44,8 @@ module.exports = defineConfig({
 });
 ```
 
-also change the package.jason file 
+also change the package.jason file
+
 ```javascript
 {
   "dependencies": {
@@ -55,6 +58,11 @@ also change the package.jason file
   }
 }
 ```
+
 it should be like this
 
-## and your done with the instalation 
+## and your done with the instalation
+
+## for further documentation regard to this [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
+
+## as for the Steps regard to this website [steps](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
