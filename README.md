@@ -69,7 +69,49 @@ also, change the package.json file
 
 it should be like this
 
+make a json file in the root directory and follow this naming format 
+
+```javascript
+.cypress-cucumber-preprocessorrc.json
+```
+and Paste this inside
+
+```json
+{
+    "stepDefinitions": [
+        "cypress/regression/[filepath]/**/*.cy.js",
+        "cypress/regression/[filepath].cy.js",
+        "cypress/regression/[filepart]/common.cy.js",
+        "cypress/regression/common/*.cy.js"
+        
+    ]
+}
+```
+after that adjust the file system in the Cypress folder
+
+for the Cypress test directory
+cypress/regression/{testName}/{testname.cy.js}
+for the feature 
+cypress/regression/{testName.feature}
+
 ## and you're done with the installation
+
+you can run the project
+
+```bash
+npm i
+```
+```bash
+npm run dev
+```
+```bash
+npx cypress open
+```
+for opening using chrome
+
+```bash
+npx cypress open --browser chrome
+```
 
 for further documentation regard to this [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
 
