@@ -18,7 +18,7 @@ npm i @bahmutov/cypress-esbuild-preprocessor
 ```
 
 ## 4. Configure Cypress
-Modify the cypress.config.js file as follows:
+Modify the `cypress.config.js` file as follows:
 
 ```javascript
 const { defineConfig } = require("cypress");
@@ -82,8 +82,8 @@ Create a `.cypress-cucumber-preprocessorrc.json` file in the root directory and 
 ## 8. Adjust File System Structure
 Organize your file system within the Cypress folder as follows:
 
-*For Cypress test files: `cypress/regression/{testName}/{testname.cy.js}`
-*For feature files: `cypress/regression/{testName.feature}`
+* For Cypress test files: `cypress/regression/{testName}/{testname.cy.js}`
+* For feature files: `cypress/regression/{testName.feature}`
 
 
 ## Running the Project
