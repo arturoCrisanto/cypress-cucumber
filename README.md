@@ -1,23 +1,24 @@
-#Cypress with Cucumber (BDD)
-how to install cypress with cucumber
+# Cypress with Cucumber (BDD)
 
-install cypress
+## Installation
+To set up Cypress with Cucumber for Behavior-Driven Development (BDD), follow these steps:
 
 ```bash
 npm install cypress --save-dev
 ```
 
-also install this for cucumber
+## 2. Install Cypress Cucumber Preprocessor
 
 ```bash
 npm i @badeball/cypress-cucumber-preprocessor
 ```
-
+## 3. Install ESBuild Preprocessor for Cypress
 ```bash
 npm i @bahmutov/cypress-esbuild-preprocessor
 ```
 
-and change the cypress.config file
+## 4. Configure Cypress
+Modify the cypress.config.js file as follows:
 
 ```javascript
 const { defineConfig } = require("cypress");
@@ -44,15 +45,14 @@ module.exports = defineConfig({
 });
 ```
 
-if you want to add the Cypress studio
+## 5.(Optional) Enable Cypress Studio
+If you want to add Cypress Studio, include the following line in your cypress.config.js file within the e2e section:
 
 ```javascript
 experimentalStudio: true,
 ```
-
-just add this to your cypres.config file inside the e2e
-
-also, change the package.json file
+## 6. Update package.json
+Update your package.json file with the required dependencies:
 
 ```javascript
 {
@@ -62,19 +62,11 @@ also, change the package.json file
   },
   "devDependencies": {
     "cypress": "^13.7.3",
-    "typescript": "^5.4.5"
   }
 }
 ```
-
-it should be like this
-
-make a json file in the root directory and follow this naming format 
-
-```javascript
-.cypress-cucumber-preprocessorrc.json
-```
-and Paste this inside
+## 7. Configure Cucumber Preprocessor
+Create a `.cypress-cucumber-preprocessorrc.json` file in the root directory and paste the following configuration:
 
 ```json
 {
@@ -87,33 +79,35 @@ and Paste this inside
     ]
 }
 ```
-after that adjust the file system in the Cypress folder
+## 8. Adjust File System Structure
+Organize your file system within the Cypress folder as follows:
 
-for the Cypress test directory
-cypress/regression/{testName}/{testname.cy.js}
+*For Cypress test files: `cypress/regression/{testName}/{testname.cy.js}`
+*For feature files: `cypress/regression/{testName.feature}`
 
-for the feature 
-cypress/regression/{testName.feature}
 
-## and you're done with the installation
+## Running the Project
 
-you can run the project
+After completing the installation and configuration, you can run the project using the following commands:
 
 ```bash
 npm i
 ```
+
 ```bash
 npm run dev
 ```
+
 ```bash
 npx cypress open
 ```
-for opening using chrome
+
+To open using Chrome:
 
 ```bash
 npx cypress open --browser chrome
 ```
 
-for further documentation regard to this [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
+For further documentation, refer to the  [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
 
-as for the Steps regard to this website [steps](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
+Additionally, detailed steps can be found at [steps](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
