@@ -46,7 +46,7 @@ module.exports = defineConfig({
 ```
 
 ## 5.(Optional) Enable Cypress Studio
-If you want to add Cypress Studio, include the following line in your cypress.config.js file within the e2e section:
+If you want to add Cypress Studio, include the following line in your `cypress.config.js` file within the e2e section:
 
 ```javascript
 experimentalStudio: true,
