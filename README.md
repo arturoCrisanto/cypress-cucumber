@@ -108,6 +108,6 @@ To open using Chrome:
 npx cypress open --browser chrome
 ```
 
-For further documentation, refer to the  [docu](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
+For further documentation, refer to the  [Cypress Cucumber Preprocessor Documentation](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
 
-Additionally, detailed steps can be found at [steps](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
+Additionally, detailed steps can be found at [Cucumber in Cypress: A Step-by-Step Guide](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
