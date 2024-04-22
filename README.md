@@ -190,6 +190,23 @@ Cypress.Commands.add("loginByGoogleApi", () => {
   });
 });
 ```
+* In your `cypress.config.js`, add this to the `defineConfig` function:
+  
+```Javascript
+env: {
+    googleRefreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+    googleClientId: process.env.REACT_APP_GOOGLE_CLIENTID,
+    googleClientSecret: process.env.REACT_APP_GOOGLE_CLIENT_SECRET,
+  },
+```
+
+And put this in your `.env` file:
+```Javascript
+REACT_APP_GOOGLE_CLIENTID =  paste your client ID
+REACT_APP_GOOGLE_CLIENT_SECRET = paste your client Secret
+GOOGLE_REFRESH_TOKEN = paste your Refresh Token
+```
+
 For further information about Google authentication, refer to this guide: [filiphric](https://filiphric.com/google-sign-in-with-cypress) and [Cypress documentation Google authentication](https://docs.cypress.io/guides/end-to-end-testing/google-authentication#__docusaurus_skipToContent_fallback)
 
 For more detailed documentation, you can visit the [Cypress Cucumber Preprocessor Documentation](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
