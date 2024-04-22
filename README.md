@@ -1,5 +1,8 @@
 # Cypress with Cucumber (BDD)
 
+## Prerequisites:
+* Node.js and npm (or yarn) installed on your system. You can verify their installation by running `node -v` and `npm -v` (or `yarn -v`) in your terminal.
+
 ## Installation
 To set up Cypress with Cucumber for Behavior-Driven Development (BDD), follow these steps:
 
@@ -44,6 +47,10 @@ module.exports = defineConfig({
   },
 });
 ```
+* You can also add the `baseUrl` property to your configuration:
+```Javascript
+    baseUrl: "http://localhost:3000",
+```
 
 ## 5.(Optional) Enable Cypress Studio
 If you want to add Cypress Studio, include the following line in your `cypress.config.js` file within the e2e section:
@@ -85,29 +92,106 @@ Organize your file system within the Cypress folder as follows:
 * For Cypress test files: `cypress/regression/{testName}/{testname.cy.js}`
 * For feature files: `cypress/regression/{testName.feature}`
 
-
 ## Running the Project
 
-After completing the installation and configuration, you can run the project using the following commands:
+After completing installation and configuration, you can run the project using various commands:
 
+* Install dependencies:
 ```bash
 npm i
 ```
 
+* Run the project in development mode (Optional):
+  If your application has a development server, start it before running Cypress tests.
+  
 ```bash
 npm run dev
 ```
-
+* Open Cypress Test Runner:
 ```bash
 npx cypress open
 ```
 
-To open using Chrome:
-
+* Open Cypress Test Runner using Chrome:
 ```bash
 npx cypress open --browser chrome
 ```
+Additionally, you can enhance your Cypress tests with custom commands:
 
-For further documentation, refer to the  [Cypress Cucumber Preprocessor Documentation](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
+## Custom Commands
+Add the following custom commands to your `cypress/support/command.js` file:
 
-Additionally, detailed steps can be found at [Cucumber in Cypress: A Step-by-Step Guide](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
+* Log a warning message:
+```Javascript
+Cypress.Commands.add("logInfo", (message) => {
+  cy.log(`ℹ️  INFO: ${message}`);
+});
+```
+* Wait for an element to be visible:
+```Javascript
+Cypress.Commands.add(
+  "waitForElementToBeVisible",
+  (selector, timeout = 5000) => {
+    cy.get(selector, { timeout }).should("be.visible");
+  }
+);
+});
+```
+* Assertion for element visibility:
+```Javascript
+Cypress.Commands.add("verifyElementVisible", (selector) => {
+  cy.get(selector).should("be.visible");
+});
+```
+* Get element by data-test attribute:
+```Javascript
+Cypress.Commands.add("getDataTest", (dataTestSelector) => {
+  return cy.get(`[data-test="${dataTestSelector}"]`);
+});
+```
+## Google Provider Authentication
+If your project requires Google Sign-in, you can use the following custom code:
+
+```Javascript
+Cypress.Commands.add("loginByGoogleApi", () => {
+  cy.log("Logging in to Google");
+  cy.request({
+    method: "POST",
+    url: "https://www.googleapis.com/oauth2/v4/token",
+    body: {
+      grant_type: "refresh_token",
+      client_id: Cypress.env("googleClientId"),
+      client_secret: Cypress.env("googleClientSecret"),
+      refresh_token: Cypress.env("googleRefreshToken"),
+    },
+  }).then(({ body }) => {
+    const { access_token, id_token } = body;
+
+    cy.request({
+      method: "GET",
+      url: "https://www.googleapis.com/oauth2/v3/userinfo",
+      headers: { Authorization: `Bearer ${access_token}` },
+    }).then(({ body }) => {
+      cy.log(body);
+      const userItem = {
+        token: id_token,
+        user: {
+          googleId: body.sub,
+          email: body.email,
+          givenName: body.given_name,
+          familyName: body.family_name,
+          imageUrl: body.picture,
+        },
+      };
+
+      window.localStorage.setItem("googleCypress", JSON.stringify(userItem));
+      cy.visit("/");
+    });
+  });
+});
+```
+For further information about Google authentication, refer to this guide: [filiphric](https://filiphric.com/google-sign-in-with-cypress) and [Cypress documentation Google authentication](https://docs.cypress.io/guides/end-to-end-testing/google-authentication#__docusaurus_skipToContent_fallback)
+
+For more detailed documentation, you can visit the [Cypress Cucumber Preprocessor Documentation](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor?activeTab=readme)
+
+Additionally, you can find step-by-step guidance in this tutorial: [Cucumber in Cypress: A Step-by-Step Guide](https://filiphric.com/cucumber-in-cypress-a-step-by-step-guide)
