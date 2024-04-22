@@ -23,3 +23,58 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Log a warning message:
+Cypress.Commands.add("logInfo", (message) => {
+  cy.log(`ℹ️  INFO: ${message}`);
+});
+
+//Wait for an element to be visible:
+Cypress.Commands.add(
+  "waitForElementToBeVisible",
+  (selector, timeout = 5000) => {
+    cy.get(selector, { timeout }).should("be.visible");
+  }
+);
+//Get element by data-test attribute:
+Cypress.Commands.add("getDataTest", (dataTestSelector) => {
+  return cy.get(`[data-test="${dataTestSelector}"]`);
+});
+// Google auth Provider
+
+Cypress.Commands.add("loginByGoogleApi", () => {
+  cy.log("Logging in to Google");
+  cy.request({
+    method: "POST",
+    url: "https://www.googleapis.com/oauth2/v4/token",
+    body: {
+      grant_type: "refresh_token",
+      client_id: Cypress.env("googleClientId"),
+      client_secret: Cypress.env("googleClientSecret"),
+      refresh_token: Cypress.env("googleRefreshToken"),
+    },
+  }).then(({ body }) => {
+    const { access_token, id_token } = body;
+
+    cy.request({
+      method: "GET",
+      url: "https://www.googleapis.com/oauth2/v3/userinfo",
+      headers: { Authorization: `Bearer ${access_token}` },
+    }).then(({ body }) => {
+      cy.log(body);
+      const userItem = {
+        token: id_token,
+        user: {
+          googleId: body.sub,
+          email: body.email,
+          givenName: body.given_name,
+          familyName: body.family_name,
+          imageUrl: body.picture,
+        },
+      };
+
+      window.localStorage.setItem("googleCypress", JSON.stringify(userItem));
+      cy.visit("/");
+    });
+  });
+});

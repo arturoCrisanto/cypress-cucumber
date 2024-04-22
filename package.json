@@ -4,7 +4,6 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0"
   },
   "devDependencies": {
-    "cypress": "^13.7.3",
-    "typescript": "^5.4.5"
+    "cypress": "^13.7.3"
   }
 }
