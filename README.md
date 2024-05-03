@@ -1,4 +1,4 @@
-# Cypress with Cucumber (BDD)
+# Cypress with Cucumber Guide (BDD)
 
 ## Prerequisites:
 
